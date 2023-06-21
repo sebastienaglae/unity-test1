@@ -1,6 +1,7 @@
 #if UNITY_EDITOR
 
 using UnityEditor;
+using UnityEditor.Build.Reporting;
 using UnityEngine;
 
 namespace Scenes
@@ -19,6 +20,9 @@ namespace Scenes
                 options = BuildOptions.None
             });
             Debug.Log(report.summary);
+            Debug.Log(report.summary.result == BuildResult.Succeeded
+                ? "Build succeeded"
+                : "Build failed");
         }
 
         [MenuItem("Build/Build LinuxServer")]
@@ -33,6 +37,9 @@ namespace Scenes
                 subtarget = (int)StandaloneBuildSubtarget.Server
             });
             Debug.Log(report.summary);
+            Debug.Log(report.summary.result == BuildResult.Succeeded
+                ? "Build succeeded"
+                : "Build failed");
         }
     }
 }
